@@ -6,13 +6,13 @@ const temperature = document.getElementById("temp");
 const citytime = document.getElementById("time");
 const wind = document.getElementById("wind");
 const pressure = document.getElementById("pressure");
-const humidiy = document.getElementById("humidiy");
+const humidity = document.getElementById("humidity");
+const y = document.getElementById("yash");
 
 let loader = document.getElementById("preloader");
 window.addEventListener("load", function () {
   setTimeout(() => {
     loader.style.display = "none";
-    console.log("hi");
   }, 1200);
 });
 
@@ -25,19 +25,33 @@ async function getData(cityName) {
 }
 
 btn.addEventListener("click", async () => {
-  const value = cityinput.value;
-  const res = await getData(value);
-  cityname.innerText =
-    "City:  " +
-    `${res.location.name},${res.location.region},${res.location.country}`;
-  citytime.innerText = "Time:  " + res.location.localtime;
-  temperature.innerText = "Temperature:  " + res.current.temp_c + " °cel";
-  wind.innerText = "Wind Speed:  " + res.current.wind_mph + "m/hr";
-  pressure.innerText = "Pressure:  " + res.current.pressure_mb;
-  humidity.innerText = "Humidity:  " + res.current.humidity;
+  if (cityinput.value) {
+    const value = cityinput.value;
+    const res = await getData(value);
+    cityname.innerText =
+      "City:  " +
+      `${res.location.name},${res.location.region},${res.location.country}`;
+    citytime.innerText = "Time:  " + res.location.localtime;
+    temperature.innerText = "Temperature:  " + res.current.temp_c + " °cel";
+    wind.innerText = "Wind Speed:  " + res.current.wind_mph + "m/hr";
+    pressure.innerText = "Pressure:  " + res.current.pressure_mb;
+    humidity.innerText = "Humidity:  " + res.current.humidity;
+  } else {
+    cityname.innerText = "Please enter the city name!!";
+  }
 });
 
 function myFunction() {
   var element = document.body;
   element.classList.toggle("dark");
+}
+
+function reset() {
+  cityinput.value = "";
+  temperature.innerText = "";
+  cityname.innerText = "";
+  citytime.innerText = "";
+  wind.innerText = "";
+  pressure.innerText = "";
+  humidity.innerText = "";
 }
