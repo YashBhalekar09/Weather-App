@@ -8,19 +8,17 @@ const wind = document.getElementById("wind");
 const pressure = document.getElementById("pressure");
 const humidiy = document.getElementById("humidiy");
 
-
 let loader = document.getElementById("preloader");
 window.addEventListener("load", function () {
   setTimeout(() => {
     loader.style.display = "none";
-    console.log("hi")
-  },1200);
+    console.log("hi");
+  }, 1200);
 });
-
 
 async function getData(cityName) {
   const promise = await fetch(
-    `http://api.weatherapi.com/v1/current.json?key=833de213750a47dfb0a91301240911&q=${cityName}&aqi=yes`
+    `https://api.weatherapi.com/v1/current.json?key=833de213750a47dfb0a91301240911&q=${cityName}&aqi=yes`
   );
 
   return await promise.json();
