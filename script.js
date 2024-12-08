@@ -41,9 +41,14 @@ btn.addEventListener("click", async () => {
   }
 });
 
+const icon=document.querySelector("i");
+
+
 function myFunction() {
   var element = document.body;
   element.classList.toggle("dark");
+  icon.classList.toggle("bx-moon");
+  icon.classList.toggle("bx-sun");
 }
 
 function reset() {
